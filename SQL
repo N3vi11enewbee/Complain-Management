@@ -1,0 +1,18 @@
+import sqlite3
+
+# Connect to a database (it will create the file if it doesn't exist)
+conn = sqlite3.connect('mydatabase.db')
+
+# Create a cursor object to interact with the database
+cursor = conn.cursor()
+
+# Create a table (if it doesn't already exist)
+cursor.execute('''CREATE TABLE IF NOT EXISTS complaints
+                  (id INTEGER PRIMARY KEY, complaint_text TEXT)''')
+
+# Insert some data
+cursor.execute("INSERT INTO complaints (complaint_text) VALUES ('Sample complaint')")
+
+# Commit changes and close connection
+conn.commit()
+conn.close()
